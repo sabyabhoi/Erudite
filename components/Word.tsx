@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
   partOfSpeech: {
     fontSize: 20,
     color: "grey",
-    paddingBottom: 5,
+    paddingVertical: 15,
   },
   definition: {
+    fontWeight: "bold",
     paddingVertical: 5,
   },
   usage: {

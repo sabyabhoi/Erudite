@@ -5,16 +5,8 @@ import { wordStruct } from "../Types";
 import Word from "./Word";
 import Button from "./Button";
 
-import Firebase from "firebase";
-import { firebaseConfig } from "../Keys";
-
-Firebase.initializeApp(firebaseConfig);
-
-const Body = () => {
-  const [words, setWords] = useState([]);
+const Body = ({ words, setWords, reference }: any) => {
   const [data, setData] = useState<wordStruct>({} as wordStruct);
-
-  const reference = Firebase.database().ref("/");
 
   return (
     <View style={styles.wordBody}>
@@ -24,7 +16,13 @@ const Body = () => {
         definition={data.definition}
         usage={data.usage}
       />
-      <Button setData={setData} setWords={setWords} reference={reference} />
+      <Button
+        data={data}
+        setData={setData}
+        words={words}
+        setWords={setWords}
+        reference={reference}
+      />
     </View>
   );
 };

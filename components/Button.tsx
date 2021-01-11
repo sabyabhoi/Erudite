@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const Button = ({ setData, setWords, reference }: any) => {
+const Button = ({ data, setData, words, setWords, reference }: any) => {
   const capitalize = (word: string) =>
     word[0].toUpperCase() + word.slice(1).toLowerCase();
 
   const getWord = async () => {
-    const url = "https://api.dictionaryapi.dev/api/v2/entries/en/glabella";
+    if (words === undefined)
+      reference.on("value", (data: any) => setWords(data.val().words));
+    let index = Math.floor(Math.random() * words.length);
+    if (data.word === words[index])
+      index = Math.floor(Math.random() * words.length);
+
+    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${words[index]}`;
     const response = await fetch(url);
     const responseData = await response.json();
 
@@ -16,7 +22,6 @@ const Button = ({ setData, setWords, reference }: any) => {
       definition: responseData[0].meanings[0].definitions[0].definition,
       usage: responseData[0].meanings[0].definitions[0].example,
     };
-    reference.on("value", (data: any) => setWords(data.val().words));
     setData(word);
   };
 
