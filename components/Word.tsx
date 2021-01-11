@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   usage: {
     fontStyle: "italic",
     paddingVertical: 5,
+    textAlign: "center",
   },
 });
 

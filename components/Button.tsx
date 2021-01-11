@@ -36,7 +36,7 @@ const Button = ({ data, setData, words, setWords, reference }: any) => {
 
 const styles = StyleSheet.create({
   btnView: {
-    flex: 1,
+    flex: 3,
   },
   btn: {
     borderRadius: 25,
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#424F67",
   },
   btnText: {
-    fontFamily: "roboto",
     color: "white",
     fontSize: 20,
     fontWeight: "bold",

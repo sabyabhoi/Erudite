@@ -5,7 +5,7 @@ import { wordStruct } from "../Types";
 import Word from "./Word";
 import Button from "./Button";
 
-const Body = ({ words, setWords, reference }: any) => {
+const WordCard = ({ words, setWords, reference }: any) => {
   const [data, setData] = useState<wordStruct>({} as wordStruct);
 
   return (
@@ -29,13 +29,12 @@ const Body = ({ words, setWords, reference }: any) => {
 
 const styles = StyleSheet.create({
   wordBody: {
-    flex: 0.8,
+    flex: 1,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    width: "80%",
   },
 });
 
-export default Body;
+export default WordCard;
