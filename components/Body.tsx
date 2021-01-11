@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { wordStruct } from "../Types";
 import Word from "./Word";

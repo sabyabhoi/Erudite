@@ -21,7 +21,7 @@ const Button = ({ setData }: any) => {
   };
 
   return (
-    <View>
+    <View style={styles.btnView}>
       <TouchableOpacity onPress={getWord} style={styles.btn}>
         <Text style={styles.btnText}>Get New Word</Text>
       </TouchableOpacity>
@@ -30,6 +30,9 @@ const Button = ({ setData }: any) => {
 };
 
 const styles = StyleSheet.create({
+  btnView: {
+    flex: 1,
+  },
   btn: {
     borderRadius: 25,
     paddingVertical: 10,

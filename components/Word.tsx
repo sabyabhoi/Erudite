@@ -16,7 +16,7 @@ const Word = ({ word, partOfSpeech, definition, usage }: wordStruct) => {
 
 const styles = StyleSheet.create({
   wordBody: {
-    flex: 0.8,
+    flex: 9,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   usage: {
     fontStyle: "italic",
     paddingVertical: 5,
-    paddingBottom: 20,
   },
 });
 
