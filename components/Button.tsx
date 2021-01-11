@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const Button = ({ setData }: any) => {
+const Button = ({ setData, setWords, reference }: any) => {
   const capitalize = (word: string) =>
     word[0].toUpperCase() + word.slice(1).toLowerCase();
 
@@ -16,7 +16,7 @@ const Button = ({ setData }: any) => {
       definition: responseData[0].meanings[0].definitions[0].definition,
       usage: responseData[0].meanings[0].definitions[0].example,
     };
-
+    reference.on("value", (data: any) => setWords(data.val().words));
     setData(word);
   };
 
