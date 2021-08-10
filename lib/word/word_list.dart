@@ -7,24 +7,25 @@ class WordList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: ListWheelScrollView(itemExtent: 200, children: <Widget>[
-        WordCard(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        child: ListView.separated(
+          itemCount: 2,
+          itemBuilder: (context, index) => WordCard(
             wordData: WordData(
-                word: "Erudite",
-                type: "Adjective",
-                defn: "having or showing great knowledge or learning",
+                word: 'Erudite',
+                type: 'Adjective',
+                defn: 'having or showing great knowledge or learning.',
                 usage:
-                    "Ken could turn any conversation into an erudite discussion")),
-        WordCard(
-            wordData: WordData(
-                word: "Glabella",
-                type: "Noun",
-                defn:
-                    "the smooth part of the forehead above and between the eyebrows.",
-                usage: "Casey has a fine Glabella")),
-      ]),
+                    'Ken could turn any conversation into an erudite discussion'),
+          ),
+          separatorBuilder: (context, index) => const Divider(
+            height: 5,
+          ),
+        ),
+      ),
     );
   }
 }
