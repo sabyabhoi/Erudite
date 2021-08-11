@@ -37,6 +37,13 @@ class Word extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 16),
                 ),
+                const SizedBox(height: 20.0),
+                Text(
+                  "\"${wordData.usage}\"",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 16, fontStyle: FontStyle.italic),
+                ),
                 const SizedBox(height: 100.0),
                 TextButton(
                   onPressed: () {},
