@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:erudite/word/word_card.dart';
-import 'package:erudite/word/word_data.dart';
-//import 'package:path_provider/path_provider.dart';
-//import 'dart:io';
+import 'package:erudite/word/word.dart';
+import 'package:hive/hive.dart';
 
 class WordList extends StatefulWidget {
   const WordList({Key? key}) : super(key: key);
@@ -12,39 +11,46 @@ class WordList extends StatefulWidget {
 }
 
 class _WordListState extends State<WordList> {
-  List<WordData> words = [
-    WordData(
-        word: 'Erudite',
-        type: 'Adjective',
-        defn: 'having or showing great knowledge or learning',
-        usage: 'Ken could turn any conversation into an erudite discussion.'),
-    WordData(
-        word: 'Callipygian',
-        type: 'Adjective',
-        defn: 'having well-shaped buttocks',
-        usage: 'Stacy is callipygian.'),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    print('List initialized');
-  }
+  List<Word> words = Hive.box<Word>('words').values.toList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-        child: ListView.separated(
-          itemCount: 2,
-          itemBuilder: (context, index) => WordCard(wordData: words[index]),
-          separatorBuilder: (context, index) => const Divider(
-            height: 5,
-          ),
-        ),
+      body: FutureBuilder(
+          future: Hive.openBox<Word>('words'),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              }
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                child: ListView.separated(
+                  itemCount: Hive.box<Word>('words').length,
+                  itemBuilder: (context, index) {
+                    return WordCard(wordData: words[index]);
+                  },
+                  separatorBuilder: (context, index) => const Divider(
+                    height: 5,
+                  ),
+                ),
+              );
+            } else {
+              return const CircularProgressIndicator();
+            }
+          }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Text("Click"),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    Hive.box('words').close();
   }
 }

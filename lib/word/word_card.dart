@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:erudite/word/word_data.dart';
 import 'package:erudite/word/word.dart';
+import 'package:erudite/word/word_info.dart';
 
 class WordCard extends StatelessWidget {
-  final WordData wordData;
+  final Word wordData;
 
   const WordCard({Key? key, required this.wordData}) : super(key: key);
 
@@ -25,7 +25,7 @@ class WordCard extends StatelessWidget {
       ),
       openBuilder:
           (BuildContext context, void Function({Object? returnValue}) action) =>
-              Word(
+              WordInfo(
         wordData: wordData,
       ),
     );
